@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.css" />
+    <link rel="stylesheet" href="css/main.css">
+    <title>Hangman</title>
+  </head>
+  <body>
+      <center><h1>Hangman</h1>
+
+  <button id="jugar">Jugar!</button></center><br><br><br><br>
+    Escribe una letra: &nbsp;<input type="text" id="letra_usuario">
+    <div id="resultado"></div>
+    <div id="palabra"></div>
+
+
+
+
+
+    <script
+  src="https://code.jquery.com/jquery-3.1.1.js"
+  integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA="
+  crossorigin="anonymous"></script>
+
+  <script>
+    function jalar_letra(){
+      var url =
+        "http://api.wordnik.com/v4/words.json/randomWord?hasDictionaryDef=true&minCorpusCount=0&minLength=5&maxLength=15&api_key=a2a73e7b926c924fad7001ca3111acd55af2ffabf50eb4ae5"
+        console.log();
+
+     var palabra = $("#jugar").val();
+
+       $.getJSON(url, {}, function(p){
+      var palabras = p.word;
+      $("#palabra").attr(palabras);
+       $("#palabra").html(palabras);
+
+
+
+    });
+  }
+
+
+  $(function(){
+      $("#jugar").click(jalar_letra);//callback
+
+      });
+
+
+    </script>
+
+    <script>
+function comparar() {
+    var palabra_compu = palabras;
+    var usaurio = $("#letra_usuario").val();;
+    var n = palabra_compu.localeCompare(usaurio);
+    console.log(comparar);
+}
+</script>
+
+    <script>
+  var input = document.querySelector('#letra_usuario');
+  input.oninput = function(){
+   document.querySelector('#resultado').innerHTML = input.value;
+  }
+  </script>
+
+
+  </body>
+</html>
