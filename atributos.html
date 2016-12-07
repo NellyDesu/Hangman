@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.css" />
+    <link rel="stylesheet" href="css/main.css">
+    <title>Atributos</title>
+  </head>
+  <body>
+    <h1 id="titulo"> Atributos </h1>
+    <button type="button" id="btn_accion">Cambiar</button>
+
+    <script
+  src="https://code.jquery.com/jquery-3.1.1.js"
+  integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA="
+  crossorigin="anonymous"></script>
+  </body>
+
+  <script>
+   function cambiar_clases(e){
+     var elem = $(e.target);
+     elem.addClass("rojo");
+
+   }
+
+   $(function(){
+     //even listeners
+     $("#btn_accion").click(cambiar_clases);
+
+   });
+
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+</html>

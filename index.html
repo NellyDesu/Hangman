@@ -9,11 +9,13 @@
   <body>
       <center><h1>Hangman</h1>
 
-  <button id="jugar">Jugar!</button></center><br><br><br><br>
+    <button id="jugar"gh>Jugar!</button></center><br><br><br><br>
     Escribe una letra: &nbsp;<input type="text" id="letra_usuario">
     <div id="resultado"></div>
-    <div id="palabra"></div>
+    <div id="palabra">res:.</div>
+    <button  onclick="reemplazar();" id="comp">comparar</button>
 
+.
 
 
 
@@ -24,47 +26,73 @@
   crossorigin="anonymous"></script>
 
   <script>
+   var words;
+   var hiddenWord = "Palabra: "
+
     function jalar_letra(){
       var url =
+      /*"https://devf-palabras-api.appspot.com/random"*/
         "http://api.wordnik.com/v4/words.json/randomWord?hasDictionaryDef=true&minCorpusCount=0&minLength=5&maxLength=15&api_key=a2a73e7b926c924fad7001ca3111acd55af2ffabf50eb4ae5"
         console.log();
+        var container = $("#palabra");
+      $.getJSON(url, {}, function(p){
+        words = p.word;
+        /*$("#palabra").attr(words);*/
+        $("#palabra").html(words);
 
-     var palabra = $("#jugar").val();
+        var wl = words.length;
+        for(var i=0; i<wl; i++){
+          //hiddenWord += "*";
+          $("#resultado").append("<span class='"+wl[i]+"'> * </span>");
+          console.log();
 
-       $.getJSON(url, {}, function(p){
-      var palabras = p.word;
-      $("#palabra").attr(palabras);
-       $("#palabra").html(palabras);
+        }
 
+         function reemplazar(letra){
+          $("*" + letra).html(letra);
 
+         }
 
-    });
-  }
+      });
 
+    }
 
   $(function(){
       $("#jugar").click(jalar_letra);//callback
 
-      });
+    });
 
 
-    </script>
+   function comparar() {
+     var palabra_compu = words;
+     console.log(palabra_compu);
+     var usaurio = $("#letra_usuario").val();
+     var longitud = palabra_compu.length;
+     console.log(longitud);
+   for (var i = 0; i < longitud; i++) {
+     /*if (palabra_compu.charAt[i]  == usaurio){
+       /*document.querySelector("#resultado").innerHTML = usaurio;*/
+       /*hiddenWord.[i] = usuario;
+       document.querySelector("#resultado").innerHTML = hiddenWord;
+     }
+     else {
+       document.querySelector("#resultado").innerHTML = hiddenWord;
+     }*/
 
-    <script>
-function comparar() {
-    var palabra_compu = palabras;
-    var usaurio = $("#letra_usuario").val();;
-    var n = palabra_compu.localeCompare(usaurio);
-    console.log(comparar);
-}
+
+
+       }
+
+
+     }
+
+
+
 </script>
 
-    <script>
-  var input = document.querySelector('#letra_usuario');
-  input.oninput = function(){
-   document.querySelector('#resultado').innerHTML = input.value;
-  }
-  </script>
+
+
+
 
 
   </body>

@@ -1,5 +1,12 @@
+button{
 
+}
 
 #palabra{
-  
+/*display: none;*/
+}
+
+.rojo{
+  font-weight: 800px;
+  color:red;
 }
